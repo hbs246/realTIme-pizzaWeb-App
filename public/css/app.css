@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .noty_layout_mixin,
 #noty_layout__centerRight,
 #noty_layout__centerLeft,
@@ -317,19 +319,11 @@ nav li a:hover {
   color: #FE5F1E;
 }
 
-form #logout {
-  transition: all 0.3s ease-in-out;
-}
-
-form #logout:hover {
-  color: #FE5F1E;
-}
-
-nav li:last-child a {
+#cartIcon a {
   background: #FE5F1E;
 }
 
-nav li:last-child a:hover {
+#cartIcon a:hover {
   background: #b23301;
 }
 
@@ -366,6 +360,10 @@ section.herosection.cart {
   outline: none;
 }
 
+.mbutton:focus {
+  outline: none;
+}
+
 section.cart {
   background: #F8F8F8;
 }
@@ -373,6 +371,10 @@ section.cart {
 section.cart .amount {
   color: #FE5F1E;
   font-weight: 900;
+}
+
+section.orders {
+  background: #F8F8F8;
 }
 
 section.login {
@@ -391,5 +393,137 @@ section.login a:hover {
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;
+}
+
+th {
+  border: 3px solid black;
+  color: blue;
+}
+
+td {
+  border: 3px solid black;
+  font-weight: bold;
+}
+
+section.status {
+  background: #F8F8F8;
+  min-height: calc(100vh - 120px);
+}
+
+.status-box {
+  padding-top: 70px;
+}
+
+.status-box ul {
+  margin-left: 84px;
+  margin-top: 100px;
+}
+
+.status-box ul li span {
+  position: relative;
+  padding-left: 30px;
+}
+
+.status-box ul li span:after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  background: #232323;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 1px 10px #F8F8F8;
+}
+
+.status-box ul li:nth-child(5) span:after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 15%;
+  background: #232323;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 1px 10px #F8F8F8;
+}
+
+.status-box ul li span::before {
+  font-family: "Line Awesome Free";
+  font-size: 57px;
+  font-weight: 600;
+  position: absolute;
+  left: -90px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: inherit;
+}
+
+.status-box ul li:nth-child(1) span:before {
+  content: "\F46C";
+}
+
+.status-box ul li:nth-child(2) span:before {
+  content: "\F560";
+}
+
+.status-box ul li:nth-child(3) span:before {
+  content: "\F818";
+}
+
+.status-box ul li:nth-child(4) span:before {
+  content: "\F0D1";
+}
+
+.status-box ul li:nth-child(5) span:before {
+  content: "\F582";
+}
+
+.status-box ul li {
+  position: relative;
+}
+
+.status-box ul li::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 0px;
+  background: #232323;
+  width: 3px;
+  height: 100%;
+}
+
+.status-box ul li:nth-child(5) span:after {
+  box-shadow: 0 20px 1px 20px #F8F8F8;
+}
+
+.status-box ul li.step-completed:before {
+  background: #ccc;
+}
+
+.status-box ul li.step-completed span::after {
+  background: #ccc;
+}
+
+.status-box ul li.step-completed span {
+  color: #ccc;
+}
+
+.status-box ul li.current-status span::after {
+  background: #FE5F1E;
+}
+
+.status-box ul li.current-status span {
+  color: #FE5F1E;
+  font-weight: bold;
+}
+
+.status-box ul li small {
+  float: right;
+  margin: 4px;
+  color: #FE5F1E;
+  font-weight: bold;
 }
 

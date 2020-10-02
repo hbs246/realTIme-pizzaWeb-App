@@ -29,12 +29,7 @@ function init(){
            
         }).catch(err=>{
             return done(null,false,{message:'something went wrong'});
-        });
-
-       
-       
-
-        
+        });      
     }));
 
     // After Login we have to store user id in the session so that we can understand that user is login or not in the site.

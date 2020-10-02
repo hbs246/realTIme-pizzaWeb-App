@@ -11,14 +11,14 @@ function authController() {
 
         userLogin(req,res,next)
         {
-           // validating the user 
+           // validating the user
+           
            const {email , password} = req.body;
            if(!email || !password){
 
                req.flash('error','All fields are required');
                return res.redirect('/login');
            }
-
           passport.authenticate('local',(err,user,info)=>{
 
             if(err){
@@ -35,6 +35,9 @@ function authController() {
 
                     req.flash('error',info.message);
                     return next(err);
+                }
+                if(user.role == 'admin'){
+                    delete req.session.cart;
                 }
                 return res.redirect('/');
             });
@@ -88,7 +91,6 @@ function authController() {
             });
         },
         logout(req,res){
-
             req.logout();
             //req.flash('logOut','You are logout successfully. ')
             return res.redirect('/');
