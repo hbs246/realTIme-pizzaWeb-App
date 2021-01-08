@@ -31,8 +31,9 @@ function cartController(){
                 cart.totalQty += 1;
                 cart.totalPrice += req.body.price;
             }
-             
-            return res.json({ totalQty : cart.totalQty});
+             const eventEmitter = req.app.get('eventEmitter');
+             eventEmitter.emit('pizzaCart',cart);
+            return res.json({ cart : cart});
         }
     }
 }

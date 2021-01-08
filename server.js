@@ -109,7 +109,7 @@ io.on('connection',(socket) => {
     // Join
     socket.on('join',(orderId) => {
         socket.join(orderId);
-    })
+    });
 });
 
 eventEmitter.on('orderUpdated',(data) => {
@@ -118,9 +118,6 @@ eventEmitter.on('orderUpdated',(data) => {
 
 eventEmitter.on('orderPlaced',(data) => {
 
-    console.log('hi harshil');
-    
-    console.log(data);
-    
     io.to('adminRoom').emit('orderAPlaced',data);
-})
+    
+});

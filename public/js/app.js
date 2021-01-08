@@ -26835,7 +26835,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var addToCart = document.querySelectorAll('.add-to-cart');
-var cartCounter = document.getElementById('cartCounter');
+var cartCounter = document.getElementById('cartCounter'); // Client side Socket connection
+
+var socket = io();
 addToCart.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
     // let admin = btn.dataset;
@@ -26849,7 +26851,7 @@ addToCart.forEach(function (btn) {
 function updateCart(pizza) {
   // Post request send  
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/update-cart', pizza).then(function (res) {
-    cartCounter.innerText = res.data.totalQty;
+    cartCounter.innerText = res.data.cart.totalQty;
     new noty__WEBPACK_IMPORTED_MODULE_1___default.a({
       type: 'success',
       timeout: 1000,
@@ -26916,7 +26918,6 @@ function admin(socket) {
     orders.unshift(order);
     orderTableBody.innerHTML = '';
     orderTableBody.innerHTML = generateMarkup(orders);
-    console.log(order);
   });
 }
 var time = document.createElement('small');
@@ -26947,9 +26948,7 @@ function updateStatus(order) {
   });
 }
 
-updateStatus(order); // Client side Socket connection
-
-var socket = io();
+updateStatus(order);
 admin(socket); // Join 
 
 if (order) {
@@ -26977,6 +26976,17 @@ socket.on('updateOrder', function (data) {
     progressBar: false
   }).show();
 });
+var cartPath = window.location.pathname;
+
+if (cartPath.includes('cart')) {
+  console.log(cartPath);
+  socket.emit('join', 'cartRoom');
+}
+
+socket.on('cartsScreen', function (data) {
+  console.log(data);
+});
+console.log('hi');
 
 /***/ }),
 
@@ -26998,8 +27008,8 @@ socket.on('updateOrder', function (data) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\node_js\realTime-pizzaApp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\node_js\realTime-pizzaApp\resources\scss\app.scss */"./resources/scss/app.scss");
+__webpack_require__(/*! C:\Users\Harshil Solanki\Documents\node_js\realTime-pizzaApp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Harshil Solanki\Documents\node_js\realTime-pizzaApp\resources\scss\app.scss */"./resources/scss/app.scss");
 
 
 /***/ })

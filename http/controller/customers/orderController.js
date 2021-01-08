@@ -29,10 +29,9 @@ function orderController() {
                     }
                     req.flash('success', 'Order placed successfully');
                     delete req.session.cart;
-
+                    
                     const eventEmitter = req.app.get('eventEmitter');
                     eventEmitter.emit('orderPlaced', orders);
-
                     return res.redirect('/customers/orders');
                 })
 

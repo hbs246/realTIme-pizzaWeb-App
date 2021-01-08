@@ -4,6 +4,11 @@ import moment from 'moment';
 let addToCart = document.querySelectorAll('.add-to-cart');
 let cartCounter = document.getElementById('cartCounter');
 
+
+// Client side Socket connection
+
+const socket = io();
+
 addToCart.forEach((btn) => {
 
     btn.addEventListener('click', (e) => {
@@ -21,8 +26,10 @@ function updateCart(pizza) {
 
     // Post request send  
     axios.post('/update-cart', pizza).then(res => {
-        cartCounter.innerText = res.data.totalQty;
-
+        cartCounter.innerText = res.data.cart.totalQty;
+        
+       
+        
         new Noty({
             type: 'success',
             timeout: 1000,
@@ -149,7 +156,6 @@ export function admin(socket){
         orders.unshift(order);
         orderTableBody.innerHTML = '';
         orderTableBody.innerHTML = generateMarkup(orders);
-        console.log(order);
         
     });
 }
@@ -192,9 +198,6 @@ function updateStatus(order){
 updateStatus(order);
 
 
-// Client side Socket connection
-
-const socket = io();
 admin(socket);
 // Join 
 
@@ -226,3 +229,16 @@ socket.on('updateOrder',(data) => {
     }).show();
 
 });
+
+const cartPath = window.location.pathname;
+
+
+if(cartPath.includes('cart'))
+{
+    console.log(cartPath);
+    socket.emit('join','cartRoom');
+}
+socket.on('cartsScreen',(data)=>{
+    console.log(data);
+})
+console.log('hi');
